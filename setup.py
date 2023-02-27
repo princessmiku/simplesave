@@ -19,7 +19,7 @@ setup(
     url="https://github.com/princessmiku/simplestorage",
     author="Miku",
     license="MIT",
-    keywords=["storage", "sqlite", "json"],
+    keywords=["storage", "sqlite", "json", "share", "data", "saving"],
     python_requires='>=3.11.0',
     classifiers=[
         "Programming Language :: Python :: 3.11",
@@ -27,8 +27,9 @@ setup(
     # Moduls
     packages=[
         "simplestorage",
-        "simplestorage.json",
-        "simplestorage.sqlite",
+        "simplestorage.json_module",
+        "simplestorage.json_module",
+        "simplestorage.sqlite_module",
     ]
 
 )

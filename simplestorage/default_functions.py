@@ -16,5 +16,9 @@ class DefaultStorageFunctions(ABC):
         pass
 
     @abstractmethod
+    def delete(self, path):
+        pass
+
+    @abstractmethod
     def save(self):
         pass

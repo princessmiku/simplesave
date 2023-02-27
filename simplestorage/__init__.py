@@ -1,35 +1,44 @@
+from json_module import JsonStorage
 from .default_functions import DefaultStorageFunctions
-from .internal import InternalStorage
+from .internal_module import InternalStorage
 
-INTERNAL = "internal"
-SQLITE = "SQLite"
-JSON = "json"
-CSV = "csv"
-XML = "xml"
+# Connection types
+INTERNAL = "internal_module"
+#SQLITE = "SQLite"
+JSON = "json_module"
+#CSV = "csv"
+#XML = "xml"
+#PVF = "pvf"  # own data storage type
 
 
 class Storage:
 
     def __init__(self, connection_type: str, file_path: str = None):
         if connection_type == INTERNAL:
-            self.__data: DefaultStorageFunctions = InternalStorage()
-        #elif connection_type == JSON:
-            #self.__data: DefaultStorageFunctions = JsonStorage()
+            self._data: DefaultStorageFunctions = InternalStorage()
+        elif connection_type == JSON:
+            self._data: DefaultStorageFunctions = JsonStorage(file_path)
+        else:
+            raise NameError("Selected connection type are not supported, check if you spell it right")
 
     def get(self, path: str | list[str], *, fill: list[str | int] = None) -> any:
         path: str = self._build_path(path, fill)
-        return self.__data.get_value(path)
+        return self._data.get_value(path)
 
     def set(self, path: str | list[str], value: any, *, fill: list[str | int] = None):
         path: str = self._build_path(path, fill)
-        self.__data.set_value(path, value)
+        self._data.set_value(path, value)
 
     def exists(self, path: str | list[str], *, fill: list[str | int] = None) -> bool:
         path: str = self._build_path(path, fill)
-        return self.__data.exists_value(path)
+        return self._data.exists_value(path)
+
+    def delete(self, path: str | list[str], *, fill: list[str | int] = None):
+        path: str = self._build_path(path, fill)
+        self._data.delete(path)
 
     def save(self):
-        self.__data.save()
+        self._data.save()
 
     @staticmethod
     def _build_path(path: str | list[str], fill: list[str | int] = None) -> str:
