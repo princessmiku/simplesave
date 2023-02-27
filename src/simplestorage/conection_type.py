@@ -1,5 +1,0 @@
-SQLITE = "SQLite"
-JSON = "Json"
-CSV = "CSV"
-XML = "XML"
-#TTS = "TTS"

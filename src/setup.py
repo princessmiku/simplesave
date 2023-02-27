@@ -18,7 +18,6 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/princessmiku/simplestorage",
     author="Miku",
-
     license="MIT",
     keywords=["storage", "sqlite", "json"],
     python_requires='>=3.11.0',
