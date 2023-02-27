@@ -1,4 +1,5 @@
 from json_module import JsonStorage
+from kpv_storage import KpvStorage
 from .default_functions import DefaultStorageFunctions
 from .internal_module import InternalStorage
 
@@ -8,7 +9,7 @@ INTERNAL = "internal_module"
 JSON = "json_module"
 #CSV = "csv"
 #XML = "xml"
-#PVF = "pvf"  # own data storage type
+KPV = "kpv"  # own data storage type, Key Pont Value
 
 
 class Storage:
@@ -18,6 +19,8 @@ class Storage:
             self._data: DefaultStorageFunctions = InternalStorage()
         elif connection_type == JSON:
             self._data: DefaultStorageFunctions = JsonStorage(file_path)
+        elif connection_type == KPV:
+            self._data: DefaultStorageFunctions = KpvStorage(file_path)
         else:
             raise NameError("Selected connection type are not supported, check if you spell it right")
 
@@ -45,7 +48,7 @@ class Storage:
         if isinstance(path, list):
             path: str = ".".join(path)
         if not fill and not path.__contains__("?"):
-            return path
+            return path.lower()
         if path.__contains__("?") and not fill:
             raise TypeError("The path string contains ? variables, but therese no fill options for it")
         elif fill and not path.__contains__("?"):
@@ -53,4 +56,4 @@ class Storage:
         if path.count("?") != len(fill):
             raise IndexError("The length of ? variables in path are not the same length in fill")
         fill = list(map(str, fill))
-        return ''.join(elem if elem != '?' else fill.pop(0) for elem in path)
+        return ''.join(elem if elem != '?' else fill.pop(0) for elem in path).lower()

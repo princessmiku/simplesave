@@ -7,7 +7,9 @@ from internal_module import InternalStorage
 
 class JsonStorage(InternalStorage):
 
-    def __init__(self, file_path: str):
+    def __init__(self, file_path: str = None):
+        if file_path is None:
+            file_path = "simplestorage.json"
         try:
             if os.stat(file_path).st_size == 0:
                 json_data = {}
