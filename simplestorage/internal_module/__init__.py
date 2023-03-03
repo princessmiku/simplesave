@@ -43,11 +43,11 @@ class InternalStorage(DefaultStorageFunctions):
         stage = self._data
         for index, arg in enumerate(arguments):
             if index != arguments_length:
-                if not stage.__contains__(arg):
+                if arg not in stage:
                     return False
-                stage = stage.get(arg, {})
+                stage = stage[arg] or {}
             else:
-                return True if stage.get(arg) else False
+                return True if arg in stage else False
         raise KeyError("Error, path not found, problems with path generation")
 
     def delete(self, path):
@@ -84,7 +84,10 @@ class InternalStorage(DefaultStorageFunctions):
             pa_va.append(value)
             self.set_value(path, pa_va)
         else:
-            self.set_value(path, [pa_va, value])
+            if self.exists_path(path):
+                self.set_value(path, [pa_va, value])
+            else:
+                self.set_value(path, [value])
 
     def get_value_type(self, path: str) -> type:
         return type(self.get_value(path))
