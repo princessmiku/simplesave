@@ -1,4 +1,4 @@
-from simplestorage.default_functions import DefaultStorageFunctions
+from simplesave.default_functions import DefaultStorageFunctions
 
 
 class InternalStorage(DefaultStorageFunctions):
