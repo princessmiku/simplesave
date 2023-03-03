@@ -7,7 +7,10 @@ from internal_module import InternalStorage
 
 class JsonStorage(InternalStorage):
 
-    def __init__(self, file_path: str):
+    def __init__(self, **kwargs):
+        file_path = kwargs["file_path"]
+        if file_path is None:
+            file_path = "simplestorage.json"
         try:
             if os.stat(file_path).st_size == 0:
                 json_data = {}
@@ -17,7 +20,6 @@ class JsonStorage(InternalStorage):
             json_data = {}
         except JSONDecodeError as e:
             raise e
-        print(json_data)
         super().__init__(json_data)
         self.__file_path = file_path
 

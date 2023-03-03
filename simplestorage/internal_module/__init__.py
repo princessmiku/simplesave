@@ -36,18 +36,18 @@ class InternalStorage(DefaultStorageFunctions):
                 stage[arg] = value
         # raise KeyError("Error, path not found, problems with path generation")
 
-    def exists_value(self, path: str) -> bool:
+    def exists_path(self, path: str) -> bool:
         arguments: list[str] = path.split(".")
         arguments_length: int = len(arguments) - 1
         arg: str
         stage = self._data
         for index, arg in enumerate(arguments):
             if index != arguments_length:
-                if not stage.__contains__(arg):
+                if arg not in stage:
                     return False
-                stage = stage.get(arg, {})
+                stage = stage[arg] or {}
             else:
-                return True if stage.get(arg) else False
+                return True if arg in stage else False
         raise KeyError("Error, path not found, problems with path generation")
 
     def delete(self, path):
@@ -70,3 +70,43 @@ class InternalStorage(DefaultStorageFunctions):
         raise NotImplementedError(
             "This function is not available in the internal_module mode, because it does not support saving."
         )
+
+    def get_value_by_index(self, path: str, index: int):
+        pa_va = self.get_value(path)
+        if isinstance(pa_va, list):
+            return pa_va[index]
+        raise TypeError(f"Path {path} is not a list")
+
+    def add_value(self, path: str, value: any):
+        # path value
+        pa_va = self.get_value(path)
+        if isinstance(pa_va, list):
+            pa_va.append(value)
+            self.set_value(path, pa_va)
+        else:
+            if self.exists_path(path):
+                self.set_value(path, [pa_va, value])
+            else:
+                self.set_value(path, [value])
+
+    def get_value_type(self, path: str) -> type:
+        return type(self.get_value(path))
+
+    def remove_value_by_value(self, path: str, value: any):
+        pa_va: list = self.get_value(path)
+        if isinstance(pa_va, list):
+            pa_va.remove(value)
+            self.set_value(path, pa_va)
+        else:
+            raise TypeError(f"Path {path} is not a list")
+
+    def remove_value_by_index(self, path: str, index: int):
+        pa_va: list = self.get_value(path)
+        if isinstance(pa_va, list):
+            pa_va.pop(index)
+            self.set_value(path, pa_va)
+        else:
+            raise TypeError(f"Path {path} is not a list")
+
+    def null(self, path: str):
+        self.set_value(path, None)
