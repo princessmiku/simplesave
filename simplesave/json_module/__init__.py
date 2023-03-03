@@ -2,7 +2,7 @@ import json
 import os
 from json import JSONDecodeError
 
-from internal_module import InternalStorage
+from ..internal_module import InternalStorage
 
 
 class JsonStorage(InternalStorage):
