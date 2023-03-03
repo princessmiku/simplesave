@@ -28,7 +28,7 @@ setup(
     packages=[
         "simplesave",
         "simplesave.internal_module",
-        "simplesabe.json_module"
+        "simplesave.json_module"
     ]
 
 )
