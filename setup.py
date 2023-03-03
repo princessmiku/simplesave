@@ -21,13 +21,14 @@ setup(
     license="MIT",
     keywords=["storage", "json", "share", "data", "saving", "global", "local", "cache"],
     python_requires='>=3.11.0',
-    package_dir={
-        '': 'simplesave'
-    },
     classifiers=[
         "Programming Language :: Python :: 3.11",
     ],
     # Moduls
-    packages=find_packages('simplesave')
+    packages=[
+        "simplesave",
+        "simplesave.internal_module",
+        "simplesabe.json_module"
+    ]
 
 )
