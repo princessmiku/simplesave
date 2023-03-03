@@ -27,9 +27,8 @@ setup(
     # Moduls
     packages=[
         "simplestorage",
+        "simplestorage.internal_module",
         "simplestorage.json_module",
-        "simplestorage.json_module",
-        "simplestorage.sqlite_module",
     ]
 
 )

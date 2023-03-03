@@ -8,8 +8,10 @@ from internal_module import InternalStorage
 class JsonStorage(InternalStorage):
 
     def __init__(self, **kwargs):
-        file_path = kwargs["file_path"]
-        if file_path is None:
+
+        if kwargs.__contains__("file_path"):
+            file_path = kwargs["file_path"]
+        else:
             file_path = "simplestorage.json"
         try:
             if os.stat(file_path).st_size == 0:
