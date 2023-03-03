@@ -6,7 +6,7 @@ The library does not reinvent the wheel, but enriches it with not having to deal
 
 # Installation
 
-Installation from pip is not supported currently.
+Installation from pip ``pip install simplesave``
 
 Installation with pip + github ``pip install git+https://github.com/princessmiku/simplesave``
 

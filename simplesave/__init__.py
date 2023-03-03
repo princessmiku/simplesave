@@ -1,5 +1,5 @@
-from json_module import JsonStorage
-from xml_storage import XmlStorage
+from .json_module import JsonStorage
+#from .xml_storage import XmlStorage
 from .default_functions import DefaultStorageFunctions
 from .internal_module import InternalStorage
 
@@ -8,7 +8,7 @@ INTERNAL = "internal_module"
 #SQLITE = "SQLite"
 JSON = "json_module"
 #CSV = "csv"
-XML = "xml"
+#XML = "xml"
 
 
 class Storage(DefaultStorageFunctions):
