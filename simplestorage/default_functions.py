@@ -35,7 +35,7 @@ class DefaultStorageFunctions(ABC):
     @abstractmethod
     def add_value(self, path: str, value: any):
         """
-        Add a value to a path, its generate automatically a list, if there's no list
+        Add a value the list in a path, its generate automatically a list (without data loss), if there's no list
         :param path:
         :param value:
         :return:
@@ -63,7 +63,7 @@ class DefaultStorageFunctions(ABC):
     @abstractmethod
     def delete(self, path):
         """
-        Delete all data in the path with the path itself
+        Delete all data in the path with the path itself (not the complete only the last)
         :param path:
         :return:
         """
