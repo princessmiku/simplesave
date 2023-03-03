@@ -1,5 +1,5 @@
 from json_module import JsonStorage
-from kpv_storage import KpvStorage
+from xml_storage import XmlStorage
 from .default_functions import DefaultStorageFunctions
 from .internal_module import InternalStorage
 
@@ -8,21 +8,20 @@ INTERNAL = "internal_module"
 #SQLITE = "SQLite"
 JSON = "json_module"
 #CSV = "csv"
-#XML = "xml"
-KPV = "kpv"  # own data storage type, Key Pont Value
+XML = "xml"
 
 
 class Storage:
 
-    def __init__(self, connection_type: str, file_path: str = None):
+    def __init__(self, connection_type: str, **kwargs):
         if connection_type == INTERNAL:
             self._data: DefaultStorageFunctions = InternalStorage()
         elif connection_type == JSON:
-            self._data: DefaultStorageFunctions = JsonStorage(file_path)
-        elif connection_type == KPV:
-            self._data: DefaultStorageFunctions = KpvStorage(file_path)
+            self._data: DefaultStorageFunctions = JsonStorage(**kwargs)
+        elif connection_type == XML:
+            self._data: DefaultStorageFunctions = XmlStorage(**kwargs)
         else:
-            raise NameError("Selected connection type are not supported, check if you spell it right")
+            raise TypeError("Selected connection type are not supported, check if you spell it right")
 
     def get(self, path: str | list[str], *, fill: list[str | int] = None) -> any:
         path: str = self._build_path(path, fill)

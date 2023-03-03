@@ -70,3 +70,24 @@ class InternalStorage(DefaultStorageFunctions):
         raise NotImplementedError(
             "This function is not available in the internal_module mode, because it does not support saving."
         )
+
+    def get_value_by_index(self, path: str, index: int):
+        pass
+
+    def add_value(self, path: str, value: any):
+        pass
+
+    def exists_path(self, path: str) -> bool:
+        pass
+
+    def get_value_type(self, path: str) -> type:
+        pass
+
+    def remove_value_by_value(self, path: str, value: any):
+        pass
+
+    def remove_value_by_index(self, path: str, index: int):
+        pass
+
+    def null(self, path: str):
+        pass
