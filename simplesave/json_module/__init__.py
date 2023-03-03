@@ -12,7 +12,7 @@ class JsonStorage(InternalStorage):
         if kwargs.__contains__("file_path"):
             file_path = kwargs["file_path"]
         else:
-            file_path = "simplestorage.json"
+            file_path = "simplesave.json"
         try:
             if os.stat(file_path).st_size == 0:
                 json_data = {}

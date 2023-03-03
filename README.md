@@ -1,4 +1,4 @@
-# SimpleStorage
+# SimpleSave
 Simple Storage is an easy way to work with data in your Python script. <br>
 You can save and load your data without much effort or knowledge about any storage method. 
 Moreover, it provides the possibilities to use data and variables globally in a script.<br>
@@ -8,7 +8,7 @@ The library does not reinvent the wheel, but enriches it with not having to deal
 
 Installation from pip is not supported currently.
 
-Installation with pip + github ``pip install git+https://github.com/princessmiku/simplestorage``
+Installation with pip + github ``pip install git+https://github.com/princessmiku/simplesave``
 
 
 # Infos
@@ -41,7 +41,7 @@ If you want a way to save, this method is nothing for you.
 This method is best suited for caches.
 
 ````python
-from simplestorage import Storage, INTERNAL
+from simplesave import Storage, INTERNAL
 storage: Storage = Storage(INTERNAL)
 ````
 
@@ -53,10 +53,10 @@ The JSON storage is built in the same way as the internal one,
 with the addition that you can store it in a JSON and load it from there.
 
 With this storage method a file specification with ``file_path=xxx`` is possible, 
-if no specification is set it falls back to the file ``simplestorage.json``.
+if no specification is set it falls back to the file ``simplesave.json``.
 
 ````python
-from simplestorage import Storage, JSON
+from simplesave import Storage, JSON
 storage: Storage = Storage(JSON, file_path="data.json")
 ````
 
@@ -103,7 +103,7 @@ One way is to just do it directly in your own code
 
 ````python
 user_id = "5521"
-my_path = "user.{user_id}.information.email"
+my_path = f"user.{user_id}.information.email"
 ````
 
 ### Integrated functions
