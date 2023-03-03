@@ -1,5 +1,5 @@
 import pathlib
-from setuptools import setup
+from setuptools import setup, find_packages
 
 HERE = pathlib.Path(__file__).parent
 README = (HERE / "README.md").read_text()
@@ -21,14 +21,13 @@ setup(
     license="MIT",
     keywords=["storage", "json", "share", "data", "saving", "global", "local", "cache"],
     python_requires='>=3.11.0',
+    package_dir={
+        '': 'simplesave'
+    },
     classifiers=[
         "Programming Language :: Python :: 3.11",
     ],
     # Moduls
-    packages=[
-        "simplesave",
-        "simplesave.internal_module",
-        "simplesave.json_module",
-    ]
+    packages=find_packages('simplesave')
 
 )
