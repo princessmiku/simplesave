@@ -1,4 +1,10 @@
 # SimpleSave
+
+[![Python 3.6](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/)
+[![PyPi license](https://badgen.net/pypi/license/pip/)](https://pypi.org/project/pip/)
+[![Downloads](https://static.pepy.tech/badge/simplesave)](https://pepy.tech/project/simplesave)
+
+
 Simple Save is an easy way to work with data in your Python script. <br>
 You can save and load your data without much effort or knowledge about any storage method. 
 Moreover, it provides the possibilities to use data and variables globally in a script.<br>
