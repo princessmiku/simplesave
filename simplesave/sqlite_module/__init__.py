@@ -18,13 +18,20 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import sqlite3
+
 from simplesave import DefaultStorageFunctions
 
 
-class XmlStorage(DefaultStorageFunctions):
+class SQLiteStorage(DefaultStorageFunctions):
 
-    def __init__(self, file_path: str = None):
-        pass
+    def __init__(self, **kwargs):
+        if kwargs.__contains__("file_path"):
+            file_path = kwargs["file_path"]
+        else:
+            file_path = "simplesave.sqlite"
+        self._connection = sqlite3.connect(file_path)
+        super().__init__()
 
     def get_value(self, path: str) -> any:
         pass
@@ -58,4 +65,3 @@ class XmlStorage(DefaultStorageFunctions):
 
     def save(self):
         pass
-

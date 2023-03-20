@@ -1,11 +1,32 @@
-from .json_module import JsonStorage
+# Copyright (c) 2023 Miku
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+from simplesave.json_module import JsonStorage
+from simplesave.sqlite_module import SQLiteStorage
 #from .xml_storage import XmlStorage
-from .default_functions import DefaultStorageFunctions
-from .internal_module import InternalStorage
+from simplesave.default_functions import DefaultStorageFunctions
+from simplesave.internal_module import InternalStorage
 
 # Connection types
 INTERNAL = "internal_module"
-#SQLITE = "SQLite"
+SQLITE = "SQLite"
 JSON = "json_module"
 #CSV = "csv"
 #XML = "xml"
@@ -18,8 +39,10 @@ class Storage(DefaultStorageFunctions):
             self._data: DefaultStorageFunctions = InternalStorage()
         elif connection_type == JSON:
             self._data: DefaultStorageFunctions = JsonStorage(**kwargs)
-        elif connection_type == XML:
-            self._data: DefaultStorageFunctions = XmlStorage(**kwargs)
+        elif connection_type == SQLITE:
+            self._data: DefaultStorageFunctions = SQLiteStorage(**kwargs)
+        #elif connection_type == XML:
+        #    self._data: DefaultStorageFunctions = XmlStorage(**kwargs)
         else:
             raise TypeError("Selected connection type are not supported, check if you spell it right")
 
