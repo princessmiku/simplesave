@@ -125,5 +125,13 @@ class DefaultStorageFunctions(ABC):
         """
         pass
 
+    @abstractmethod
+    def close(self):
+        """
+        Close the current storage
+        :return:
+        """
+        pass
+
 
 

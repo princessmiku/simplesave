@@ -130,3 +130,8 @@ class InternalStorage(DefaultStorageFunctions):
 
     def null(self, path: str):
         self.set_value(path, None)
+
+    def close(self):
+        raise NotImplementedError(
+            "This function is not available in the internal_module mode, because it does not support to close it."
+        )

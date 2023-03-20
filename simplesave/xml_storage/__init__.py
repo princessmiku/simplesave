@@ -59,3 +59,5 @@ class XmlStorage(DefaultStorageFunctions):
     def save(self):
         pass
 
+    def close(self):
+        pass

@@ -54,3 +54,6 @@ class JsonStorage(InternalStorage):
     def save(self):
         print(self._data)
         json.dump(self._data, open(self.__file_path, mode='w'))
+
+    def close(self):
+        pass
