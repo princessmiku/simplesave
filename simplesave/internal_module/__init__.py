@@ -18,7 +18,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from simplesave import DefaultStorageFunctions
+from simplesave.default_functions import DefaultStorageFunctions
 
 
 class InternalStorage(DefaultStorageFunctions):

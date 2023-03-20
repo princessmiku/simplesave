@@ -30,11 +30,11 @@ class SQLiteStorage(DefaultStorageFunctions):
             file_path = kwargs["file_path"]
         else:
             file_path = "simplesave.sqlite"
-        self._connection = sqlite3.connect(file_path)
+        self._connection: sqlite3.Connection = sqlite3.connect(file_path)
         super().__init__()
 
     def get_value(self, path: str) -> any:
-        pass
+        self._connection.execute("SELECT * FROM user").fetchall()
 
     def get_value_by_index(self, path: str, index: int):
         pass
