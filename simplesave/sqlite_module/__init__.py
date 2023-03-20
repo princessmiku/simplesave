@@ -20,7 +20,7 @@
 
 import sqlite3
 
-from simplesave import DefaultStorageFunctions
+from simplesave.default_functions import DefaultStorageFunctions
 
 
 class SQLiteStorage(DefaultStorageFunctions):
