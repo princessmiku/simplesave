@@ -89,6 +89,9 @@ class Storage(DefaultStorageFunctions):
     def save(self):
         self._data.save()
 
+    def close(self):
+        self._data.close()
+
     @staticmethod
     def _build_path(path: str | list[str], fill: list[str | int] = None, *args) -> str:
         if not fill:
